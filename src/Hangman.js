@@ -12,7 +12,7 @@ import AlphaButtons from "./AlphaButtons";
 
 
 class Hangman extends Component {
-  /** by default, allow 6 guesses and use provided gallows images. */
+  // by default, allow 6 guesses and use provided gallows images.
   static defaultProps = {
     maxWrong: 6,
     images: [img0, img1, img2, img3, img4, img5, img6]
@@ -24,7 +24,7 @@ class Hangman extends Component {
 
   }
 
-  /** guessedWord: show current-state of word:
+  /* guessedWord: show current-state of word:
     if guessed letters are {a,p,e}, show "app_e" for "apple"
   */
   checkGuessedWord() {
@@ -33,11 +33,10 @@ class Hangman extends Component {
       .split("")
       .map(ltr => (this.state.guessed.has(ltr) ? ltr : "_")).join("");
 
-
     return guessedWord
   }
 
-  /** handleGuest: handle a guessed letter:
+  /* handleGuest: handle a guessed letter:
     - add to guessed letters
     - if not in answer, increase number-wrong guesses
   */
@@ -50,9 +49,10 @@ class Hangman extends Component {
     }));
   }
 
-  checkWin = () => {
-
-  }
+  /* handleReset: handle Resetting the game:
+    - set to original State
+    - change the default word for guessing
+  */
 
   handleReset = (evt) => {
     this.setState(st => ({
@@ -62,10 +62,6 @@ class Hangman extends Component {
     }));
   }
 
-  /** generateButtons: return array of letter buttons to render */
-
-
-  /** render: render game */
   render() {
     const guessedWord = this.checkGuessedWord()
     let block;
@@ -82,8 +78,6 @@ class Hangman extends Component {
       block = <p className='Hangman-btns'>Try again, correct Word was - {this.state.word} </p>
     }
 
-
-
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
@@ -91,7 +85,6 @@ class Hangman extends Component {
         <div>
           <p className='Hangman-title'>{`Total Wrong Guesses ${this.state.nWrong}`}</p>
           <p className='Hangman-word'>{guessedWord}</p>
-
           {block}
         </div>
         <button className="Hangman-reset" onClick={this.handleReset}>Reset</button>
